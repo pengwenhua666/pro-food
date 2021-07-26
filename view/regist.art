@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="/admin/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/admin/css/base.css">
+</head>
+
+<body>
+    <div class="login-body">
+        <div class="login-container">
+            <div class="login">
+                <form action="/regist" method="post" id='registForm'>
+                    <h4 class="title">快乐峰餐饮</h4>
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" name="username" class="form-control" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label>电话</label>
+                        <input type="text" name="tel" class="form-control" placeholder="请输入电话号码">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="password" class="form-control" placeholder="请输入密码" >
+                    </div>
+                    <div class="form-group">
+                        <label>角色</label>
+                        <select class="form-control" name="role" >
+                            <option value="普通用户" selected >普通用户</option>
+                            <!-- <option value="管理员">管理员</option> -->
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">注册</button>
+                    <a class="btn btn-primary" href="/login">返回登录</a>
+                    <p class="tips">{{message}}</p>
+                </form>
+            </div>
+            <div class="tips"></div>
+        </div>
+    </div>
+    <script src="/admin/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/admin/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin/js/common.js"></script>
+    <script type="text/javascript">
+        //为表单添加提交事件
+        $('#loginForm').on('submit', function() {
+            //获取到表单中用户输入的内容
+            var result = serializeToJson($(this));
+            //如果用户没有输入手机号码  trim()去掉字符串两边的空格
+            if (result.tel.trim().length == 0) {
+                alert('请输入电话');
+                //阻止程序向下执行
+                return false;
+            }
+            //如果用户没有输入密码
+            if (result.password.trim().length == 0) {
+                alert('请输入密码');
+                return false;
+            }
+        })
+    </script>
+</body>
+
+</html>

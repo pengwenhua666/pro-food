@@ -1,0 +1,32 @@
+{{extend './common/layout.art'}}
+
+{{block 'link'}}<link rel="stylesheet" href="/home/css/myorder.css">{{/block}}
+
+{{block 'main'}}
+	<!-- 头部框架开始 -->
+	{{include './common/header.art'}}
+	<!-- 头部框架结束 -->
+	<!-- 菜品列表开始 -->
+    <ul class="list w1100">
+	{{each toPayArr}}
+	<!-- <form action="/home/shopcar" method="POST"> -->
+		<li class="{{$index%2 == 0 ? 'fl' : 'fr'}}">
+			<a href="/home/food?id={{@$value._id}}" class="thumbnail">
+				<img src="{{$value.fid.picture}}">
+			</a>
+			<div class="content">
+				<a class="food-title " href="/home/food?id={{@$value._id}}">{{$value.foodname}}</a>
+				<div class="food-info ">
+					<span class="price">{{$value.price}} 元</span>
+				</div>
+                <div class="amount fr">数量 X <i>{{$value.fnum}}</i></div>
+				<div class="brief">
+					总计 <i class="totalPrice" style="font-weight: bold; color: red;">{{$value.totalPrice}}</i>  元
+				</div>
+			</div>
+		</li>
+	<!-- </form> -->
+	{{/each}}
+    </ul>
+	<!-- 菜品列表结束 -->
+{{/block}}

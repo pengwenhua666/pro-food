@@ -1,0 +1,157 @@
+.list .brief {
+	overflow: hidden;
+	font-size: 14px;
+	line-height: 24px;
+	margin: 40px 0 20px 0;
+}
+.list {
+	overflow: hidden;
+    position: relative;	
+}
+
+.list li {
+	width: 530px;
+	height: 430px;
+	background: #FFF;
+	margin-top: 30px;
+	box-shadow: 2px 2px 3px #e1e1e1;
+}
+
+.list .thumbnail, 
+.list .thumbnail img {
+	display: block;
+	width: 530px;
+	height: 240px;
+}
+
+.list .content {
+	padding: 16px 20px 0;
+}
+
+/* 菜品列表结束 */
+
+.amount {
+    display: inline-block;
+}
+
+/* 菜品增加减少框开始 */
+.list .content .choose-amount {
+	display: inline-block;
+	line-height: 34px;
+    height: 34px;
+    /* margin: 0 10px; */
+}
+
+.content .choose-amount .num{
+	text-align: center;
+	height: 30px;
+	width: 80px;
+}
+
+#add, #reduce {
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+/* 菜品增加减少框结束 */
+
+.list .bottom {
+	text-align: center;
+}
+.list .bottom .checkbox {
+	display: inline-block;
+	/* border-radius: 50%; */
+}
+
+
+/* 底部开始 */
+.bar-wrapper{
+    width: 1100px;
+    height: 50px;
+    position: fixed;
+    bottom: -1px;
+    z-index: 99;
+    background: #e5e5e5;
+}
+
+.bar-wrapper .bar-right{
+    float: right;
+    color: #3c3c3c;
+}
+.bar-wrapper .bar-right strong{
+    color: #f40;
+}
+
+.bar-wrapper .bar-right .piece{
+    float: left;
+    min-width: 110px;
+    margin-right: 20px;
+    height: 50px;
+    line-height: 50px;
+}
+.bar-wrapper .bar-right .piece .piece_num{
+    display: inline-block;
+    padding: 0 10px;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: tohoma,arial;
+}
+.bar-wrapper .bar-right .totalMoney{
+    float: left;
+    min-width: 100px;
+    height: 50px;
+    line-height: 50px;
+}
+.bar-wrapper .bar-right .totalMoney .total_text{
+    float: right;
+    font-weight: 400;
+    font-size: 20px;
+    font-family: Arial;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-left: 15px;
+}
+.bar-wrapper .bar-right .calBtn{
+    float: left;
+}
+.bar-wrapper .bar-right .calBtn a{
+    display: block;
+    width: 120px;
+    height: 50px;
+    color: #fff;
+    background: #B0B0B0;
+    cursor: not-allowed;
+    font-size: 22px;
+    letter-spacing: 5px;
+    text-decoration: none;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 2px;
+}
+.bar-wrapper .bar-right .calBtn a.btn_sty{
+    background: #f40;
+    cursor: pointer;
+}
+/* 底部结束 */
+
+/* 分页开始 */
+.page {
+	padding: 30px 0;
+	font-size: 0;
+	text-align: center;
+}
+
+.page a {
+	display: inline-block;
+	font-size: 14px;
+	margin: 0 8px;
+}
+
+.page .active {
+	color: #ff7300;
+}
+/* 分页结束 */

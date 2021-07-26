@@ -1,0 +1,52 @@
+{{extend './common/layout.art'}}
+
+{{block 'link'}}<link rel="stylesheet" href="/home/css/myorder.css">{{/block}}
+
+{{block 'main'}}
+	<!-- 头部框架开始 -->
+	{{include './common/header.art'}}
+	<!-- 头部框架结束 -->
+	<!-- 菜品列表开始 -->
+	<ul class="list w1100">
+		{{each toPayArr}}
+		<li class="{{$index%2 == 0 ? 'fl' : 'fr'}}">
+			<a href="/home/food?id={{@$value._id}}" class="thumbnail">
+				<img src="{{$value.fid.picture}}">
+			</a>
+			<div class="content">
+				<a class="food-title fl" href="/home/food?id={{@$value._id}}">{{$value.fid.foodname}}</a>
+				<div class="fr" >
+					<span>单价 {{$value.price}} 元</span>
+				</div>
+				<div class="brief">
+					总计 <i class="totalPrice" style="font-weight: bold; color: red;">{{$value.totalPrice}}</i>  元
+				</div>
+				<div class="choose-amount">
+					<a href="/home/shopcar?fid={{$value.fid._id}}&uid={{@userInfo._id}}&sign=0" id="reduce">-</a>
+					<input type="text" class="num" value="{{$value.fnum}}">
+					<a href="/home/shopcar?fid={{$value.fid._id}}&uid={{@userInfo._id}}&sign=1" id="add">+</a>
+				</div>
+				<a href="/home/remove?fid={{$value.fid._id}}&uid={{@userInfo._id}}" class="btn btn-primary fr" type="submit" style="background-color: brown">删除</a>
+			</div>
+			<div class="bottom">
+				<input type="checkbox" class="checkbox">
+				<input type="hidden" name="uid" class="uid" value="{{@userInfo._id}}">
+				<input type="hidden" name="fid" class="fid" value="{{@$value.fid._id}}">
+			</div>
+		</li>
+		{{/each}}
+		<!-- <div class="all"><input type="checkbox" id="allCheck">点击全选</div> -->
+		<div class="bar-wrapper">
+			<div class="bar-right">
+				<div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+				<div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
+				<div class="calBtn"><a href="javascript:;">提交</a></div>
+			</div>
+		</div>
+	</ul>
+	<!-- 菜品列表结束 -->
+{{/block}}
+
+{{block 'script'}} 
+        <script src="/home/js/myorder.js"></script>
+{{/block}}

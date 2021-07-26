@@ -1,0 +1,61 @@
+{{extend './common/layout.art'}}
+
+{{block 'link'}}<link rel="stylesheet" href="/home/css/index.css">{{/block}}
+
+{{block 'main'}}
+	<!-- 头部框架开始 -->
+	{{include './common/header.art'}}
+	<!-- 头部框架结束 -->
+	<!-- 菜品列表开始 -->
+    <ul class="list w1100">
+	{{each result.records}}
+	<!-- <form action="/home/shopcar" method="POST"> -->
+		<li class="{{$index%2 == 0 ? 'fl' : 'fr'}}">
+			<a href="/home/food?id={{@$value._id}}" class="thumbnail">
+				<img src="{{$value.picture}}">
+			</a>
+			<div class="content">
+				<a class="food-title " href="/home/food?id={{@$value._id}}">{{$value.foodname}}</a>
+				<div class="food-info ">
+					<span class="price">{{$value.price}} 元</span>
+				</div>
+				<div class="brief">
+					{{@$value.content.replace(/<[^>]+>/g,'').substr(0,50) + '...'}}
+				</div>
+				{{if userInfo}}
+				<!-- <input type="hidden" name="uid" value="{{@userInfo._id}}">
+				<input type="hidden" name="fid" value="{{@$value.fid}}"> -->
+				<a href="/home/shopcar?uid={{@userInfo._id}}&fid={{@$value._id}}" class="btn addcar btn-primary fr" type="submit" style="background-color: brown">加入购物车</a>
+				{{/if}}
+			</div>
+		</li>
+	<!-- </form> -->
+	{{/each}}
+    </ul>
+	<!-- 菜品列表结束 -->
+
+	<!-- 分页开始 -->
+	<div class="page w1100">
+		{{if result.page > 1}}
+		<a href="/home/?page={{result.page - 1}}">上一页</a>
+		{{/if}}
+
+		{{each result.display}}
+		<a href="/home/?page={{$value}}" class="active">{{$value}}</a>
+		{{/each}}
+
+		{{if result.page < result.pages }}
+		<a href="/home/?page={{result.page - 0 + 1}}">下一页</a>
+		{{/if}}
+	</div>
+	<!-- 分页结束 -->
+{{/block}}
+{{block 'script'}} 
+<script type="text/javascript">
+	$(function(){
+		$('.addcar').click(function(){
+			alert('加入购物车成功');
+		})
+	})
+</script>
+{{/block}}

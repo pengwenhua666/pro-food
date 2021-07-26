@@ -1,0 +1,40 @@
+<!-- 头部框架开始 -->
+<div class="header">
+    <div class="w1100">
+        <!-- 网站logo开始 -->
+        <h1 class="logo fl">
+            {{if userInfo}}
+            <p>{{userInfo.username}}</p>
+            {{else}}
+           < <a href="/home/"><img src="images/logo.png" alt="快乐峰"></a>>
+            {{/if}}
+        </h1>
+        <!-- 网站logo结束 -->
+        <!-- 网站导航开始 -->
+        <ul class="navigation fr">
+           <li>
+               <a class="{{currentLink == 'index' ? 'current' : ''}}" href="/home/">首页</a>
+           </li>
+           {{if userInfo}}
+           <li>
+            <a class="{{currentLink == 'mycar' ? 'current' : ''}}" href="/home/myorder?id={{@userInfo._id}}">我的购物车</a>
+           </li>
+           <li>
+            <a class="{{currentLink == 'myorder' ? 'current' : ''}}" href="/home/mycar?id={{@userInfo._id}}">我的订单</a>
+           </li>
+           <li>
+               <a href="/home/home_logout">退出登录</a>
+           </li>
+           {{else}}
+           <li>
+               <a href="/login">登录</a>
+           </li>
+           <li>
+               <a href="/login">注册</a>
+           </li>
+           {{/if}}
+        </ul>
+        <!-- 网站导航结束 -->
+    </div>
+</div>
+<!-- 头部框架结束 -->

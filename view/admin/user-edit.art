@@ -1,0 +1,44 @@
+{{extend './common/layout.art'}}
+{{block 'main'}}
+    <!-- 头部 -->
+    {{include './common/header.art'}}
+    <!-- /头部 -->
+    <!-- 主体内容 -->
+    <div class="content">
+        <!-- 侧边栏 -->
+        {{include './common/aside.art'}}
+        <!-- 侧边栏 -->
+        <div class="main">
+            <!-- 分类标题 -->
+            <div class="title">
+                <p class="tips">{{message}}</p>
+            </div>
+            <!-- /分类标题 -->
+            <form class="form-container" method="POST" action="{{link}}">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" name="username" class="form-control" placeholder="请输入用户名" value="{{user && user.username}}">
+                </div>
+                <div class="form-group">
+                    <label>电话</label>
+                    <input type="text" name="tel" class="form-control" placeholder="请输入电话号码" value="{{user && user.tel}}">
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" name="password" class="form-control" placeholder="请输入密码" >
+                </div>
+                <div class="form-group">
+                    <label>角色</label>
+                    <select class="form-control" name="role">
+                        <option value="普通用户" {{user && user.role == '普通用户' ? 'selected' : ''}}>普通用户</option>
+                        <option value="管理员" {{user && user.role == '管理员' ? 'selected' : ''}}>管理员</option>
+                    </select>
+                </div>
+                <div class="buttons">
+                    <input type="submit" value="{{button}}" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /主体内容 -->
+{{/block}}

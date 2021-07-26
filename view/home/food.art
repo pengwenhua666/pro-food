@@ -1,0 +1,57 @@
+{{extend './common/layout.art'}}
+
+{{block 'link'}}
+	<link rel="stylesheet" href="/home/css/food.css">
+{{/block}}
+
+{{block 'main'}}
+	<!-- 头部框架开始 -->
+	{{include './common/header.art'}}
+	<!-- 头部框架结束 -->
+	<!-- 菜品框架开始 -->
+	<div class="food">
+		<div class="w1100">
+			<div class="container">
+				<div class="food-header">
+					<h1 class="food-title">{{food.foodname}}</h1>
+					<div class="food-info">
+						<img src="{{food.picture}}">
+						<!-- <h3 class="price">{{food.price}} 元</h3> -->
+					</div>
+				</div>
+				<div class="food-content">
+					{{@food.content}}
+				</div>
+				<div class="food-comment">
+					{{if userInfo}}
+					<h4>评论</h4>
+					<form class="comment-form" action="/home/comment" method="POST">
+						<div><textarea class="comment" name="content"></textarea></div>
+						<input type="hidden" name="uid" value="{{@userInfo._id}}">
+						<input type="hidden" name="fid" value="{{@food._id}}">
+						<div class="items">
+							<input type="submit" value="提交">
+						</div>
+					</form>
+					{{else}}
+					<div><h2>请先进行<a href="/admin/login">登录</a>，再评论</h2></div>
+					{{/if}}
+					<div class="comment-list">
+						{{each comments}}
+						<div class="mb10">
+							<div class="food-info">
+								<span class="author">{{$value.uid.username}}</span>
+								<span>{{dateFormat($value.time, 'yyyy-mm-dd')}}</span>
+							</div>
+							<div class="comment-content">
+								{{$value.content}}
+							</div>
+						</div>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 菜品详情框架结束 -->
+{{/block}}
